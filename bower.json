@@ -1,0 +1,22 @@
+{
+  "name": "handyman",
+  "homepage": "https://github.com/ideaguy3d/handyman",
+  "authors": [
+    "Julius Alvarado <angularjs.uiux@gmail.com>"
+  ],
+  "description": "an app built by Julius Alvarado",
+  "main": "",
+  "keywords": [
+    "javascript",
+    "php"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
