@@ -1,11 +1,4 @@
-vendor
-quiz_data.*
-images
-**/.idea
+img
 node_modules
-**/*.xml
-**/**/*.xml
-.idea/workspace.xml
-api/.idea/workspace.xml
-**/bower_components
-app/ui.html
+.idea
+bower_components
