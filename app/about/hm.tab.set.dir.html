@@ -1,6 +1,7 @@
 <div role="tabpanel">
 	<ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" ng-repeat="tab in tabset.tabs">
+		<li role="presentation" ng-repeat="tab in tabset.tabs"
+		        ng-class="{'active': tab.active}">
 			<a href="" ng-click="tabset.set(tab)" role="tab">
 				{{ tab.heading }}
 			</a>

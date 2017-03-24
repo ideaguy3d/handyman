@@ -17,11 +17,14 @@
         return {
             restrict: 'E',
             transclude: true,
-            scope: {},
-            templateUrl: 'app/about/hm.tab.dir.html',
-            require: '^tabset',
-            link: function(scope, elem, attr){
-
+            scope: {
+                heading: '@'
+            },
+            template: '<div role="tabpanel" ng-show="active" ng-transclude></div>',
+            require: '^jTabSet',
+            link: function (scope, elem, attr, ctrl) {
+                scope.active = false;
+                ctrl.addTab(scope);
             }
         }
     }
@@ -39,9 +42,21 @@
                 vm.tabs = [];
                 vm.message = "<JTabSetDirectiveClass>";
                 
-                vm.tabset = function(tab){
+                vm.addTab = function(tab){
+                    vm.tabs.push(tab);
+                    if(vm.tabs.length === 1) {
+                        tab.active = true;
+                    }
+                };
 
-                }
+                vm.set = function(selectedTab){
+                    angular.forEach(vm.tabs, function(tab){
+                        if(tab.active && tab !== selectedTab){
+                            tab.active = false;
+                        }
+                    });
+                    selectedTab.active = true;
+                };
             }
         }
     }
