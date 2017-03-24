@@ -24,6 +24,14 @@
             require: '^jTabSet',
             link: function (scope, elem, attr, ctrl) {
                 scope.active = false;
+                scope.disabled = false;
+
+                if(attr.disable) {
+                    attr.$observe('disable', function (value) {
+                        scope.disabled = (value !== 'false');
+                    });
+                }
+
                 ctrl.addTab(scope);
             }
         }
@@ -33,14 +41,22 @@
         return {
             restrict: 'E',
             transclude: true,
-            scope: {},
+            scope: {
+                type: '@'
+            },
             templateUrl: 'app/about/hm.tab.set.dir.html',
             bindToController: true,
             controllerAs: 'tabset',
             controller: function(){
                 var vm = this;
+
                 vm.tabs = [];
                 vm.message = "<JTabSetDirectiveClass>";
+                vm.classes = {};
+
+                if(vm.type === 'pills') {
+                    self.classes['nav-pills'] = true;
+                }
                 
                 vm.addTab = function(tab){
                     vm.tabs.push(tab);
@@ -50,6 +66,8 @@
                 };
 
                 vm.set = function(selectedTab){
+                    if(selectedTab.disabled) return;
+
                     angular.forEach(vm.tabs, function(tab){
                         if(tab.active && tab !== selectedTab){
                             tab.active = false;
@@ -57,6 +75,14 @@
                     });
                     selectedTab.active = true;
                 };
+                
+                vm.enablePlumbing = function(){
+                    angular.forEach(vm.tabs, function(tab) {
+                       if (tab.heading === "Plumbing") {
+                           tab.disabled = !tab.disabled;
+                       }
+                    });
+                }
             }
         }
     }
