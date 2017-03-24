@@ -42,22 +42,26 @@
             restrict: 'E',
             transclude: true,
             scope: {
-                type: '@'
+                jtype: '@',
+                vertical: '@',
+                justified: '@'
             },
             templateUrl: 'app/about/hm.tab.set.dir.html',
             bindToController: true,
             controllerAs: 'tabset',
             controller: function(){
                 var vm = this;
-
                 vm.tabs = [];
-                vm.message = "<JTabSetDirectiveClass>";
                 vm.classes = {};
 
-                if(vm.type === 'pills') {
-                    self.classes['nav-pills'] = true;
-                }
-                
+
+                vm.$onInit =  function () {
+                    if(vm.jtype === 'pills') vm.classes['nav-pills'] = true;
+                    else vm.classes['nav-tabs'] = true;
+                    if(vm.justified) vm.classes['nav-justified'] = true;
+                    if(vm.vertical) vm.classes['nav-stacked'] = true;
+                };
+
                 vm.addTab = function(tab){
                     vm.tabs.push(tab);
                     if(vm.tabs.length === 1) {
