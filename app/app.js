@@ -7,19 +7,19 @@
     var app = angular.module('handyman', ['ui.router']);
 
     app.config(['$stateProvider', '$urlRouterProvider',
-        function($stateProvider, $urlRouterProvider){
+        function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 .state('home', {
                     url: '/',
-                    templateUrl: 'app/home/home.tem.html'
+                    templateUrl: 'app/home/home.view.html'
                 })
                 .state('about', {
                     url: '/about',
-                    templateUrl: 'app/about/about.tem.html'
+                    templateUrl: 'app/about/about.view.html'
                 })
                 .state('contact', {
                     url: '/contact-me',
-                    templateUrl: 'app/contact/contact.me.tem.html'
+                    templateUrl: 'app/contact/contact.me.view.html'
                 });
             $urlRouterProvider.otherwise('/');
         }

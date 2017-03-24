@@ -14,7 +14,10 @@
         return {
             restrict: 'E',
             transclude: true,
-            templateUrl: 'app/home/hm-header.dir.html'
+            templateUrl: 'app/home/hm.header.img.html',
+            link: function(scope, elem, attr, ctrl){
+
+            }
         }
     }
 }());
